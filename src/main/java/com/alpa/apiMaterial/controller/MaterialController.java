@@ -28,6 +28,18 @@ public class MaterialController {
         return creationItemCall;
     }
 
+    @PostMapping("/sku")
+    public CreationItemCall createItemSku(@RequestBody CreateItem request){
+
+        CreationItemCall creationItemCall = new CreationItemCall();
+        Item itemCreated = (Item) materialService.createItemSku(request).getResult().getValue().get(0);
+
+        creationItemCall.setItemId(String.valueOf(itemCreated.getItemId()));
+        creationItemCall.setStatus("Sucesso");
+
+        return creationItemCall;
+    }
+
     @PutMapping
     public ResponseCall mergeItem(@RequestBody MergeItem request){
 
