@@ -7,7 +7,6 @@ import com.alpa.apiMaterial.schema.xmlns.apps.scm.productmodel.items.itemservice
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
-
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBIntrospector;
 import javax.xml.namespace.QName;
@@ -45,11 +44,11 @@ public class ItemServiceRequestClient extends WebServiceGatewaySupport {
                 logger.error(e.getMessage());
                 call(createItem);
             }else {
-                System.exit(0);
+                logger.error("Sem retentativas para OM : " + createItem.getItem().getItemNumber().getValue());
             }
         }
 
-        logger.error("Create item " + createItem.getItem().getItemNumber() + " com sucesso");
+        logger.error("Create item " + createItem.getItem().getItemNumber().getValue() + " com sucesso");
 
         return response;
     }

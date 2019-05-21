@@ -3,7 +3,6 @@ package com.alpa.apiMaterial.callers;
 
 import com.alpa.apiMaterial.schema.xmlns.apps.scm.productmodel.items.itemservicev2.types.MergeItem;
 import com.alpa.apiMaterial.schema.xmlns.apps.scm.productmodel.items.itemservicev2.types.MergeItemResponse;
-import com.alpa.apiMaterial.service.MaterialService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
@@ -45,7 +44,7 @@ public class MergeItemRequestClient extends WebServiceGatewaySupport {
                 logger.error(e.getMessage());
                 call(mergeItem);
             }else {
-                System.exit(0);
+                logger.error("Sem retentativas para OM Merge : " + mergeItem.getItem().getItemNumber().getValue());
             }
         }
 

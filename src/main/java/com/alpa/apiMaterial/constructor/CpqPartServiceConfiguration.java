@@ -12,33 +12,33 @@ import org.springframework.ws.transport.http.HttpComponentsMessageSender;
 public class CpqPartServiceConfiguration {
 
     @Bean
-    public Jaxb2Marshaller marshallerItegrationService() {
+    public Jaxb2Marshaller marshallerItegrationCpqService() {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
         marshaller.setContextPath("schemaCpqPArt.wsdl");
         return marshaller;
     }
 
     @Bean
-    public CpqPartServiceRequestClient createItem(Jaxb2Marshaller marshallerItegrationService) {
+    public CpqPartServiceRequestClient createItem(Jaxb2Marshaller marshallerItegrationCpqService) {
         CpqPartServiceRequestClient client = new CpqPartServiceRequestClient();
         client.setDefaultUri("https://alpargatastest1.bigmachines.com/v2_0/receiver/parts");
-        client.setMarshaller(marshallerItegrationService);
-        client.setUnmarshaller(marshallerItegrationService);
-        client.setMessageSender(httpComponentsMessageSender());
+        client.setMarshaller(marshallerItegrationCpqService);
+        client.setUnmarshaller(marshallerItegrationCpqService);
+        client.setMessageSender(httpComponentsCpqPartMessageSender());
         return client;
     }
 
 
 
     @Bean
-    public HttpComponentsMessageSender httpComponentsMessageSender() {
+    public HttpComponentsMessageSender httpComponentsCpqPartMessageSender() {
         HttpComponentsMessageSender httpComponentsMessageSender = new HttpComponentsMessageSender();
-        httpComponentsMessageSender.setCredentials(usernamePasswordCredentials());
+        httpComponentsMessageSender.setCredentials(usernamePasswordCpqPartCredentials());
         return httpComponentsMessageSender;
     }
 
     @Bean
-    public UsernamePasswordCredentials usernamePasswordCredentials() {
+    public UsernamePasswordCredentials usernamePasswordCpqPartCredentials() {
         return new UsernamePasswordCredentials("integration", "Ora12345!");
     }
 }

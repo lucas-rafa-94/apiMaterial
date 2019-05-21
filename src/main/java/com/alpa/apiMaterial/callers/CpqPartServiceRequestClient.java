@@ -2,7 +2,6 @@ package com.alpa.apiMaterial.callers;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import schemaCpqPArt.wsdl.ModifyParts;
 import schemaCpqPArt.wsdl.ModifyPartsResponse;
@@ -11,7 +10,7 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBIntrospector;
 import javax.xml.namespace.QName;
 
-@Service
+
 public class CpqPartServiceRequestClient extends WebServiceGatewaySupport {
     Logger logger = LoggerFactory.getLogger(CpqPartServiceRequestClient.class);
 
@@ -43,7 +42,7 @@ public class CpqPartServiceRequestClient extends WebServiceGatewaySupport {
                 logger.error(e.getMessage());
                 call(modifyParts);
             }else {
-                System.exit(0);
+                logger.error("Sem retentativas para : " + modifyParts.getParts().getEachRecord().get(0).getPartNumber());
             }
         }
 

@@ -4,7 +4,6 @@ import com.alpa.apiMaterial.business.CriaPartBusiness;
 import com.alpa.apiMaterial.callers.CpqPartServiceRequestClient;
 import com.alpa.apiMaterial.callers.ItemServiceRequestClient;
 import com.alpa.apiMaterial.callers.MergeItemRequestClient;
-import com.alpa.apiMaterial.schema.ResponseCall;
 import com.alpa.apiMaterial.schema.xmlns.apps.scm.productmodel.items.itemservicev2.Item;
 import com.alpa.apiMaterial.schema.xmlns.apps.scm.productmodel.items.itemservicev2.types.CreateItem;
 import com.alpa.apiMaterial.schema.xmlns.apps.scm.productmodel.items.itemservicev2.types.CreateItemResponse;
@@ -29,31 +28,31 @@ public class MaterialService {
     @Autowired
     CriaPartBusiness criaPartBusiness;
 
-    @Autowired
-    CpqPartServiceRequestClient cpqPartServiceRequestClient;
+//    @Autowired
+//    CpqPartServiceRequestClient cpqPartServiceRequestClient;
 
 
     public CreateItemResponse createItem(CreateItem createItem){
-        logger.error("Item para criacao " + createItem.getItem().getItemNumber());
+        logger.error("Item para criacao " + createItem.getItem().getItemNumber().getValue());
         return  itemServiceRequestClient.createItem(createItem);
     }
 
     @Async
     public CreateItemResponse createItemSku(CreateItem createItem){
         CreateItemResponse createItemResponse = new CreateItemResponse();
-        logger.error("Item Sku para criacao " + createItem.getItem().getItemNumber());
+        logger.error("Item Sku para criacao " + createItem.getItem().getItemNumber().getValue());
 
         Item itemCreated =  (Item) itemServiceRequestClient.createItem(createItem).getResult().getValue().get(0);
-        cpqPartServiceRequestClient.createItem(criaPartBusiness.transformItemOmToParts(createItem.getItem(), itemCreated.getItemId().toString()));
+//        cpqPartServiceRequestClient.createItem(criaPartBusiness.transformItemOmToParts(createItem.getItem(), itemCreated.getItemId().toString()));
 
         return  createItemResponse;
     }
 
     @Async
     public void mergeItem(MergeItem mergeItem){
-        logger.error("Item para merge  " + mergeItem.getItem().getItemNumber());
+        logger.error("Item para merge  " + mergeItem.getItem().getItemNumber().getValue());
         mergeItemRequestClient.mergeItem(mergeItem);
-        cpqPartServiceRequestClient.createItem(criaPartBusiness.transformItemOmToParts(mergeItem.getItem(), mergeItem.getItem().getItemId().toString()));
+//        cpqPartServiceRequestClient.createItem(criaPartBusiness.transformItemOmToParts(mergeItem.getItem(), mergeItem.getItem().getItemId().toString()));
     }
 
 }
