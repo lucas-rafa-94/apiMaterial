@@ -1,7 +1,6 @@
 package com.alpa.apiMaterial.service;
 
 import com.alpa.apiMaterial.business.CriaPartBusiness;
-import com.alpa.apiMaterial.callers.CpqPartServiceRequestClient;
 import com.alpa.apiMaterial.callers.ItemServiceRequestClient;
 import com.alpa.apiMaterial.callers.MergeItemRequestClient;
 import com.alpa.apiMaterial.schema.xmlns.apps.scm.productmodel.items.itemservicev2.Item;
@@ -38,14 +37,13 @@ public class MaterialService {
     }
 
     @Async
-    public CreateItemResponse createItemSku(CreateItem createItem){
+    public void createItemSku(CreateItem createItem){
         CreateItemResponse createItemResponse = new CreateItemResponse();
         logger.error("Item Sku para criacao " + createItem.getItem().getItemNumber().getValue());
 
         Item itemCreated =  (Item) itemServiceRequestClient.createItem(createItem).getResult().getValue().get(0);
 //        cpqPartServiceRequestClient.createItem(criaPartBusiness.transformItemOmToParts(createItem.getItem(), itemCreated.getItemId().toString()));
 
-        return  createItemResponse;
     }
 
     @Async
