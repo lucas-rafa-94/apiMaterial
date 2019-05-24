@@ -62,6 +62,7 @@ import java.util.Objects;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ListaTecnica", propOrder = {
+        "id",
     "raiseEvent",
     "isPersistentAttributeUpdated",
     "isAddedToChildEntitiesMap",
@@ -102,6 +103,7 @@ public class ListaTecnica
     @XmlElementRef(name = "IsImportCase", namespace = "http://xmlns.oracle.com/apps/scm/productCatalogManagement/advancedItems/flex/egoItemEff/itemRevision/contexts/", type = JAXBElement.class, required = false)
     protected JAXBElement<Boolean> isImportCase;
     protected String werks;
+    protected BigDecimal id;
     @XmlElementRef(name = "werks_Display", namespace = "http://xmlns.oracle.com/apps/scm/productCatalogManagement/advancedItems/flex/egoItemEff/itemRevision/contexts/", type = JAXBElement.class, required = false)
     protected JAXBElement<String> werksDisplay;
     @XmlElementRef(name = "RedLinewerks", namespace = "http://xmlns.oracle.com/apps/scm/productCatalogManagement/advancedItems/flex/egoItemEff/itemRevision/contexts/", type = JAXBElement.class, required = false)
@@ -167,6 +169,14 @@ public class ListaTecnica
      */
     public void setRaiseEvent(JAXBElement<String> value) {
         this.raiseEvent = value;
+    }
+
+    public BigDecimal getId() {
+        return id;
+    }
+
+    public void setId(BigDecimal id) {
+        this.id = id;
     }
 
     /**

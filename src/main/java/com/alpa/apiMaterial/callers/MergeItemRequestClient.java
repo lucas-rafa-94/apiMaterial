@@ -35,18 +35,18 @@ public class MergeItemRequestClient extends WebServiceGatewaySupport {
 
         }catch (Exception e){
             countRetry++;
-            if (countRetry < 3){
-                try {
-                    Thread.sleep(20000);
-                    logger.error("Retentativa em " + 20000);
-                }catch (Exception e1){
-                    e1.printStackTrace();
-                }
-                logger.error(e.getMessage());
-                call(mergeItem);
-            }else {
-                logger.error("Sem retentativas para OM Merge : " + mergeItem.getItem().getItemNumber().getValue());
-            }
+//            if (countRetry < 3){
+//                try {
+//                    Thread.sleep(20000);
+//                    logger.error("Retentativa em " + 20000);
+//                }catch (Exception e1){
+//                    e1.printStackTrace();
+//                }
+//                logger.error(e.getMessage());
+//                call(mergeItem);
+//            }else {
+//                logger.error("Sem retentativas para OM Merge : " + mergeItem.getItem().getItemNumber().getValue());
+//            }
         }
 
         logger.error("Merge item " + mergeItem.getItem().getItemNumber() + " com sucesso");

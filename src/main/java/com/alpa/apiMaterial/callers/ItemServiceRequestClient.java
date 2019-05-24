@@ -35,18 +35,18 @@ public class ItemServiceRequestClient extends WebServiceGatewaySupport {
 
         }catch (Exception e){
             countRetry++;
-            if (countRetry < 3){
-                try {
-                    Thread.sleep(20000);
-                    logger.error("Retentativa em " + 20000);
-                }catch (Exception e1){
-                    e1.printStackTrace();
-                }
-                logger.error(e.getMessage());
-                call(createItem);
-            }else {
-                logger.error("Sem retentativas para OM : " + createItem.getItem().getItemNumber().getValue());
-            }
+//            if (countRetry < 3){
+//                try {
+//                    Thread.sleep(20000);
+//                    logger.error("Retentativa em " + 20000);
+//                }catch (Exception e1){
+//                    e1.printStackTrace();
+//                }
+//                logger.error(e.getMessage());
+//                call(createItem);
+//            }else {
+//                logger.error("Sem retentativas para OM : " + createItem.getItem().getItemNumber().getValue());
+//            }
         }
 
         logger.error("Create item " + createItem.getItem().getItemNumber().getValue() + " com sucesso");
